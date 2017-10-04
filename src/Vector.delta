@@ -1,33 +1,33 @@
-class Vector {
+class Vector<T> {
 
-  var array : Array<int>;
+  var array : Array<T>;
 
-  init(array : int[]&) {
-    this.array = Array<int>();
+  init(array : T[]&) {
+    this.array = Array<T>();
 
     for (e in 0..array.count) {
       this.array.append(array[e]);
     }
   }
 
-  init(array : Vector&) {
-    this.array = Array<int>();
+  init(array : Vector<T>&) {
+    this.array = Array<T>();
 
     for (e in 0..array.size()) {
       this.array.append(*array[e]);
     }
   }
 
-  init(array : Array<int>&) {
+  init(array : Array<T>&) {
     this.array = *array;
   }
 
   init() {
-    this.array = Array<int>();
+    this.array = Array<T>();
   }
 
   // TODO replace with T 
-  mutating func [](x: int) -> mutable int& {
+  mutating func [](x: int) -> mutable T& {
     return this.array[x];
   }
 
@@ -36,13 +36,13 @@ class Vector {
   }
 }
 
-func *(a: Vector&, b: Vector&) -> Vector {
-  var ret = Vector(a);
+func *(a: Vector<T>&, b: Vector<T>&) -> Vector<T> {
+  var ret = Vector<T>(a);
 
   // TODO throw error if sizes aren't the same
   for (i in 0..a.size()) {
     ret[i] = ret[i] * b[i];
   }
   
-  return Vector(&ret);
+  return Vector<T>(&ret);
 }
