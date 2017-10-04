@@ -1,0 +1,12 @@
+import "stdio.h";
+
+func main() {
+    puts("Hello, 世界");
+    let a = [1,2,3];
+    var vec = Vector(&a);
+    var vec2 = vec * vec;
+    for (e in 0..3) {
+        printf("%d", vec2[e]);
+    }
+    puts("");
+}

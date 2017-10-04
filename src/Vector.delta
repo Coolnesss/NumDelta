@@ -1,0 +1,48 @@
+class Vector {
+
+  var array : Array<int>;
+
+  init(array : int[]&) {
+    this.array = Array<int>();
+
+    for (e in 0..array.count) {
+      this.array.append(array[e]);
+    }
+  }
+
+  init(array : Vector&) {
+    this.array = Array<int>();
+
+    for (e in 0..array.size()) {
+      this.array.append(*array[e]);
+    }
+  }
+
+  init(array : Array<int>&) {
+    this.array = *array;
+  }
+
+  init() {
+    this.array = Array<int>();
+  }
+
+  // TODO replace with T 
+  mutating func [](x: int) -> mutable int& {
+    return this.array[x];
+  }
+
+  func size() -> int {
+    return this.array.size();
+  }
+}
+
+func *(a: Vector&, b: Vector&) -> Vector {
+  var ret = Vector(a);
+
+  // TODO throw error if sizes aren't the same
+  for (i in 0..a.size()) {
+    ret[i] = ret[i] * b[i];
+  }
+  
+  return Vector(&ret);
+}
